@@ -1,0 +1,9 @@
+@import "../sass/mixin";
+
+.buttonA {
+	@include buttonExit;
+}
+
+.buttonB {
+	@include buttonSave;
+}

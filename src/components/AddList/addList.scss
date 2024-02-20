@@ -1,0 +1,56 @@
+.addList {
+	& h1 {
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	& form {
+		display: flex;
+		flex-direction: column;
+		align-items: left;
+		justify-content: start;
+		row-gap: 15px;
+
+		& label {
+			text-align: left;
+			font-size: 16px;
+			font-weight: 600;
+		}
+
+		input[type="text"] {
+			width: 500px;
+			height: 40px;
+			border-radius: 7px;
+			padding-left: 10px;
+			border: none;
+			background-color: rgb(238, 238, 238);
+			font-weight: 400;
+			font-size: 16px;
+		}
+
+		input[type="text"]:focus {
+			outline: 1px solid rgb(129, 129, 129);
+		}
+
+		& span {
+			font-size: 18px;
+			font-weight: 500;
+			padding-left: 2px;
+			margin-bottom: 30px;
+		}
+
+		& span input[type="checkbox"] {
+			margin-left: 10px;
+			position: absolute;
+			height: 20px;
+			width: 20px;
+			cursor: pointer;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
+}
