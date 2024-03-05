@@ -5,6 +5,7 @@ import "./addList.scss";
 
 function AddList({ AddisOpen, addIsClose, list, sizeList, increment, isAdd }) {
 	const [title, setTitle] = useState("");
+	const [grau, setGrau] = useState(false);
 	const [completed, setCompleted] = useState(false);
 
 	function handleAddList() {
@@ -12,14 +13,30 @@ function AddList({ AddisOpen, addIsClose, list, sizeList, increment, isAdd }) {
 		AddNewList.push({
 			id: sizeList + 1,
 			title: title,
+			grau: grau,
 			completed: completed,
-		});
 
-		setTitle("");
-		setCompleted(false);
-		increment(1);
-		isAdd(AddNewList);
+		}
+
+		);
+
+		if (title !== "" && title.length > 0) {
+			setTitle("");
+			setGrau(false);
+			setCompleted(false);
+			increment(1);
+			isAdd(AddNewList);
+		} else {
+			alert("O campo Tarefa é obrigatório");
+			setTitle("");
+			setGrau(false);
+			setCompleted(false);
+			addIsClose();
+		};
 	}
+
+
+
 	if (AddisOpen) {
 		return (
 			<>
@@ -27,13 +44,22 @@ function AddList({ AddisOpen, addIsClose, list, sizeList, increment, isAdd }) {
 					<div className="addList">
 						<h1>Adicionar uma nova tarefa: </h1>
 						<form>
-							<label htmlFor="title">Título:</label>
+							<label htmlFor="title">Tarefa (campo obrigatório):</label>
 							<input
 								type="text"
 								id="title"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 							/>
+							<span>
+								<label htmlFor="grau">Urgente:</label>
+								<input
+									type="checkbox"
+									id="grau"
+									value={grau}
+									onChange={(e) => setGrau(e.target.checked)}
+								/>
+							</span>
 							<span>
 								<label htmlFor="completed">Concluído:</label>
 								<input
@@ -65,6 +91,7 @@ function AddList({ AddisOpen, addIsClose, list, sizeList, increment, isAdd }) {
 		);
 	} else {
 		return null;
+	
 	}
 }
 

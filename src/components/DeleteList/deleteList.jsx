@@ -19,6 +19,13 @@ function DeleteList({ DeleteIsOpen, DeleteIsClose, list, listItem, isDelete }) {
 			<tr>
 				<td>{item.title}</td>
 				<td>
+					{item.grau == true ? (
+						<img src={iconCompleted} alt="icon completed" />
+					) : (
+						<img src={iconNoCompleted} alt="icon completed" />
+					)}
+				</td>
+				<td>
 					{item.completed == true ? (
 						<img src={iconCompleted} alt="icon completed" />
 					) : (
@@ -40,6 +47,7 @@ function DeleteList({ DeleteIsOpen, DeleteIsClose, list, listItem, isDelete }) {
 								<thead>
 									<tr>
 										<th>Título</th>
+										<th>Urgente</th>
 										<th>Status</th>
 									</tr>
 								</thead>

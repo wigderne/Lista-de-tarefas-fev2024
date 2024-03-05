@@ -7,6 +7,7 @@ import iconNoCompleted from "../../assets/no_completed_black.svg";
 
 function UpdateList({ updateIsOpen, updateIsClose, list, listItem, isUpdate }) {
 	const [title, setTitle] = useState("");
+	const [grau, setGrau] = useState(false);
 	const [completed, setCompleted] = useState(false);
 
 	function handleVerifyList(id) {
@@ -15,6 +16,13 @@ function UpdateList({ updateIsOpen, updateIsClose, list, listItem, isUpdate }) {
 		return (
 			<tr>
 				<td>{item.title}</td>
+				<td>
+					{item.grau == true ? (
+						<img src={iconCompleted} alt="icon completed" />
+					) : (
+						<img src={iconNoCompleted} alt="icon completed" />
+					)}
+				</td>
 				<td>
 					{item.completed == true ? (
 						<img src={iconCompleted} alt="icon completed" />
@@ -35,10 +43,12 @@ function UpdateList({ updateIsOpen, updateIsClose, list, listItem, isUpdate }) {
 			addNewList[index] = {
 				id: listItem(),
 				title: item.title,
+				grau: grau,
 				completed: completed,
 			};
 			isUpdate(addNewList);
 			setTitle("");
+			setGrau(false);
 			setCompleted(false);
 		} else {
 			if (title !== "" ) {
@@ -47,14 +57,17 @@ function UpdateList({ updateIsOpen, updateIsClose, list, listItem, isUpdate }) {
 				addNewList[index] = {
 					id: listItem(),
 					title: title,
+					grau: grau,
 					completed: completed,
 				};
 				isUpdate(addNewList);
 				setTitle("");
+				setGrau(false);
 				setCompleted(false);
 			} else {
 				alert("Os campos são obrigatórios para a alteração");
 				setTitle("");
+				setGrau(false);
 				setCompleted(false);
 				updateIsClose;
 			}
@@ -72,7 +85,8 @@ function UpdateList({ updateIsOpen, updateIsClose, list, listItem, isUpdate }) {
 								<table>
 									<thead>
 										<tr>
-											<th>Título</th>
+											<th>Tarefa</th>
+											<th>Urgente</th>
 											<th>Status</th>
 										</tr>
 									</thead>
@@ -82,17 +96,26 @@ function UpdateList({ updateIsOpen, updateIsClose, list, listItem, isUpdate }) {
 						</div>
 						<div className="updateList__form">
 							<div>
-								<h4>Digite os novos valores: </h4>
+								<h4>Digite novos valores: </h4>
 								<form>
 									<div>
 										<input
 											type="text"
 											id="title"
-											placeholder="Título"
+											placeholder="Tarefa"
 											value={title}
 											onChange={(e) => setTitle(e.target.value)}
 										/>
 									</div>
+									<span>
+										<label htmlFor="grau">Urgente: </label>
+										<input
+											type="checkbox"
+											id="completed"
+											value={grau}
+											onChange={(e) => setGrau(e.target.checked)}
+										/>
+									</span>
 									<span>
 										<label htmlFor="completed">Concluído: </label>
 										<input

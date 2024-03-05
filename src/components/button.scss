@@ -7,3 +7,7 @@
 .buttonB {
 	@include buttonSave;
 }
+
+.buttonC {
+	@include buttonAdicionar;
+}

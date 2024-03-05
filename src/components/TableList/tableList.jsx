@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./tableList.scss";
 import iconEdit from "../../assets/edit.svg";
 import iconDelete from "../../assets/delete.svg";
-import iconMore from "../../assets/more.svg";
 import iconCompleted from "../../assets/completed.svg";
 import iconNoCompleted from "../../assets/no_completed.svg";
+import Button from "../button";
 
 function TableList({
 	list,
@@ -19,15 +19,23 @@ function TableList({
 				<table className="tableList__table-main">
 					<thead>
 						<tr>
-							<th>Título</th>
+							<th>Tarefa</th>
+							<th>Urgente</th>
 							<th>Status</th>
-							<th>Opções</th>
+							<th>Alterar/Excluir</th>
 						</tr>
 					</thead>
 					<tbody>
 						{list.map((item, index) => (
 							<tr key={index}>
 								<td>{item.title}</td>
+								<td>
+									{item.grau == true ? (
+										<img src={iconCompleted} alt="icon completed" />
+									) : (
+										<img src={iconNoCompleted} alt="icon no completed" />
+									)}
+								</td>
 								<td>
 									{item.completed == true ? (
 										<img src={iconCompleted} alt="icon completed" />
@@ -55,14 +63,14 @@ function TableList({
 						))}
 					</tbody>
 					<tfoot>
+						<br></br><br></br>
 						<tr>
-							<td>Adicionar tarefa...</td>
-							<td></td>
-							<td></td>
 							<td>
-								<button onClick={SetAddNew}>
-									<img src={iconMore} alt="icon more" />
-								</button>
+							<Button
+								text={"Adicionar Tarefa"}
+								className={"buttonC"}
+								onClick={SetAddNew}
+							/>
 							</td>
 						</tr>
 					</tfoot>

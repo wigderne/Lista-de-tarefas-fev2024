@@ -30,7 +30,7 @@ function Home() {
 	return (
 		<>
 			<div className="home">
-				<h1>Otimize seu tempo e se organize com o nosso Planejador Diário.</h1>
+				<h1>Planejador Diário de tarefas</h1>
 
 				<TableList
 					list={list}
